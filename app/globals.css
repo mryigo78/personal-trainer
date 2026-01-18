@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  
+  /* Brand Colors - Lime Energy */
+  --primary: #84cc16; /* Lime 500 */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #f4f4f5; /* Zinc 100 */
+  --secondary-foreground: #18181b;
+
+  --card: #ffffff;
+  --card-foreground: #171717;
+
+  --radius: 1rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  --radius-xl: var(--radius);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b; /* Zinc 950 */
+    --foreground: #ededed;
+    
+    --primary: #a3e635; /* Lime 400 */
+    --primary-foreground: #000000;
+    
+    --secondary: #27272a; /* Zinc 800 */
+    --secondary-foreground: #ffffff;
+    
+    --card: #18181b; /* Zinc 900 */
+    --card-foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Utilities for PWA feel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
