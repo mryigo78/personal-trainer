@@ -39,21 +39,52 @@ export default function WorkoutPage({ params }: { params: Promise<{ id: string }
                 <div className="w-10"></div>
             </div>
 
-            {/* Video Area (Mock Animation) */}
+            {/* Video Area (Stickman Animation) */}
             <div className="flex-1 relative overflow-hidden flex items-center justify-center bg-zinc-900">
-                <motion.div
-                    animate={{
-                        y: isPlaying ? [0, -50, 0] : 0,
-                        scale: isPlaying ? [1, 0.9, 1] : 1
-                    }}
-                    transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                    className="w-32 h-64 bg-primary rounded-3xl opacity-80"
-                />
-                <div className="absolute bottom-12 w-full text-center px-4">
+                <div className="relative z-0">
+                    {/* Stickman Squat Animation */}
+                    <svg width="200" height="300" viewBox="0 0 100 200" className="stroke-primary stroke-[4] fill-none stroke-linecap-round stroke-linejoin-round">
+                        <motion.g
+                            animate={{
+                                y: isPlaying ? [0, 40, 0] : 0
+                            }}
+                            transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }}
+                        >
+                            {/* Head */}
+                            <circle cx="50" cy="30" r="12" />
+                            {/* Body */}
+                            <path d="M50 42 L50 90" />
+                            {/* Arms */}
+                            <path d="M20 70 L50 50 L80 70" />
+                        </motion.g>
+
+                        {/* Legs (Animated separately for squat effect) */}
+                        <motion.path
+                            d="M50 90 L20 150 L20 190" // Left Leg
+                            animate={{
+                                d: isPlaying ?
+                                    "M50 130 L10 160 L10 190" : // Squat down
+                                    "M50 90 L20 150 L20 190"    // Stand up
+                            }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        <motion.path
+                            d="M50 90 L80 150 L80 190" // Right Leg
+                            animate={{
+                                d: isPlaying ?
+                                    "M50 130 L90 160 L90 190" : // Squat down
+                                    "M50 90 L80 150 L80 190"    // Stand up
+                            }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                    </svg>
+                </div>
+
+                <div className="absolute bottom-12 w-full text-center px-4 z-10">
                     <h1 className="text-3xl font-black mb-2">{exerciseName}</h1>
                     <p className="text-white/70">Mantén la espalda recta y respira.</p>
                 </div>

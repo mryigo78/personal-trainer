@@ -27,7 +27,7 @@ export default function OnboardingPage() {
         setDirection(1);
         setStep("processing");
         setTimeout(() => {
-            router.push("/subscription"); // Go to paywall before dashboard
+            router.push("/dashboard"); // Skip paywall for testing
         }, 3000);
     };
 
